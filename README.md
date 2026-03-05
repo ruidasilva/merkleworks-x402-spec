@@ -1,6 +1,10 @@
 # x402 Protocol Specification
 
-Canonical specification of the **x402 Stateless Settlement-Gated HTTP Protocol**.
+x402 Stateless Settlement-Gated HTTP Protocol
+
+**Specification version:** v1.0-draft
+
+Canonical specification of the x402 protocol.
 
 x402 converts economic settlement into a stateless authorization primitive for HTTP.
 
