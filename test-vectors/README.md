@@ -1,9 +1,22 @@
-# Test Vectors
+# x402 Test Vectors
 
-This directory will contain deterministic interoperability test vectors:
+This directory contains deterministic interoperability vectors for the
+x402 protocol.
 
-- Canonical challenge + expected `challenge_sha256`
-- Canonical proof object
-- Raw transaction bytes + expected `txid`
+Test vectors ensure that independent implementations compute identical
+results when processing protocol objects.
 
-These vectors allow independent implementations to verify compatibility.
+## Current vectors
+
+| Vector | Purpose |
+|--------|---------|
+| challenge-vector-001 | canonical challenge hashing |
+
+## Future vectors
+
+Planned additions:
+
+- proof validation vector
+- request binding vector
+- transaction validation vector
+- mempool acceptance scenarios
