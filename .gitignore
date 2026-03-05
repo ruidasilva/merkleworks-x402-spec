@@ -24,3 +24,6 @@ Thumbs.db
 dist/
 build/
 out/
+
+# local research docs
+x402 R&D/

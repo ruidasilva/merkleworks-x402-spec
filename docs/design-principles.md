@@ -32,4 +32,4 @@ Each challenge includes a unique nonce UTXO that must be spent in the payment tr
 
 x402 defines how HTTP requests are gated by settlement proof. It does not define how transactions are validated, how consensus works, or how the settlement layer orders and confirms transactions. The protocol speaks to the settlement layer only through well-defined interfaces: challenge, proof, and transaction validation.
 
-**Why:** This separation allows x402 to be settlement-layer agnostic in principle. The spec currently defines `scheme` values (e.g. `x402-bsv`, `bsv-tx-v1`) for a specific settlement layer, but the architecture does not require a single blockchain. Different schemes could target different settlement layers in future versions.
+**Why:** This separation allows x402 to be settlement-layer agnostic in principle. The spec currently defines `scheme` values (e.g. `bsv-tx-v1`) for a specific settlement layer, but the architecture does not require a single blockchain. Different schemes could target different settlement layers in future versions.

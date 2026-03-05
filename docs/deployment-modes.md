@@ -1,49 +1,88 @@
 # x402 Deployment Modes
 
-x402 supports multiple deployment configurations. The protocol semantics, challenge format, proof format, and verification procedure are identical across modes. See [spec/x402.md](../spec/x402.md) Section 10.
+x402 supports multiple deployment configurations. The protocol semantics,
+challenge format, proof format, and verification procedure are identical
+across all modes. See [spec/x402.md](../spec/x402.md) Section 10.
+
+Only two settlement modes exist:
+
+• Client-funded settlement  
+• Fee-delegated settlement
+
+These modes differ only in who supplies miner fees. The transaction
+structure and verification rules remain unchanged.
+
+---
 
 ## Client-Funded Settlement
 
-In client-funded mode, the client:
+In client-funded mode, the client constructs and funds the payment
+transaction directly.
 
-- Constructs the payment transaction.
-- Supplies all inputs (including the nonce UTXO spend and the payment output).
-- Pays miner fees from its own funds.
+The client:
+
+- Spends the `nonce_utxo` specified in the challenge.
+- Creates the payment output to `payee_locking_script_hex`.
+- Provides additional inputs required to pay miner fees.
 - Broadcasts the transaction to the settlement layer.
 
-The server issues challenges with `payee_locking_script_hex` and `nonce_utxo`. The client is responsible for obtaining or holding the nonce UTXO (or interacting with a service that provides it) and for funding the transaction.
+The server issues challenges containing the required payment conditions
+including the `nonce_utxo` and the `payee_locking_script_hex`.
 
-**Use case:** Clients with direct settlement-layer access. No third-party fee sponsorship required.
+Nonce UTXOs originate from the server or gateway and are provided to the
+client in the challenge.
 
-## Fee Delegation
+**Use case**
 
-In fee-delegated mode, a third party (the delegator) sponsors miner fees. The client still constructs the payment logic (spending the nonce, paying the server). The delegator adds inputs and/or outputs to cover miner fees.
+Clients with direct access to the settlement layer and their own UTXOs.
 
-Conceptually:
+---
 
-1. The client builds a partial transaction (nonce spend, payee output).
-2. The partial transaction is sent to the delegator.
-3. The delegator finalizes the transaction (adds fee inputs, signs, completes).
-4. The delegator returns the finalized transaction to the client.
-5. The client broadcasts the transaction to the settlement layer.
-6. The client includes the finalized transaction in the proof and retries the request.
+## Fee-Delegated Settlement
 
-The protocol does not define how the client and delegator communicate. That is out of scope. The protocol only requires that the proof contain a valid transaction that satisfies the challenge. This deployment configuration does not change protocol semantics. Whoever constructs the transaction, the verification rules are the same.
+In fee-delegated mode, a third party (a **delegator**) sponsors the miner
+fees required to broadcast the payment transaction.
 
-**Use case:** Clients without settlement-layer wallets or UTXOs. UX is simplified when users do not need to manage miner fees directly.
+The transaction construction process is:
 
-## Sponsored Settlement
+1. The client constructs a partial transaction containing:
+   - the nonce UTXO spend
+   - the payment output to the server
+2. The client sends the partial transaction to the delegator.
+3. The delegator adds inputs and/or outputs necessary to pay miner fees.
+4. The delegator signs the fee inputs and finalizes the transaction.
+5. The delegator returns the finalized transaction to the client.
+6. The client broadcasts the transaction to the settlement layer.
+7. The client includes the transaction in the `X402-Proof` and retries the request.
 
-In sponsored mode, the server (or a service acting on its behalf) absorbs the settlement cost. The server may:
+The protocol does not define how the client and delegator communicate.
+This interaction is outside the scope of the protocol.
 
-- Pre-fund nonce UTXOs.
-- Accept payment transactions that the server itself constructs or sponsors.
-- The server may operate with relaxed verification policies in controlled environments such as testing or internal deployments.
+The delegator may be:
 
-The specification does not define sponsored behavior in detail. Sponsored deployments are implementation-specific. The protocol semantics remain: the server executes the request when it has verified a valid proof. How the server obtains or sponsors that proof is a deployment choice.
+- a third-party service
+- the server itself
+- infrastructure operated by the API provider
 
-**Use case:** Free tiers, promotional access, or internal APIs where the server bears the cost.
+Regardless of who acts as the delegator, the transaction must satisfy
+the challenge conditions and pass the same verification procedure.
+
+**Use case**
+
+Clients that do not manage UTXOs or miner fees directly.
+
+---
 
 ## Summary
 
-All three modes use the same challenge and proof format. The difference is who constructs the transaction and who pays. The server's verification logic is unchanged.
+x402 defines only two settlement modes:
+
+| Mode          | Who Pays Miner Fees |
+| ------------- | ------------------- |
+| Client-funded | Client              |
+| Fee-delegated | Delegator           |
+
+The protocol semantics, challenge format, proof format, and verification
+rules are identical in both cases.
+
+Deployment configuration does not change protocol behavior.
