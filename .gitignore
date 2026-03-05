@@ -20,7 +20,7 @@ Thumbs.db
 *.docx
 *.epub
 
-# Build outputs (if spec generators are used later)
+# Build outputs
 dist/
 build/
 out/
