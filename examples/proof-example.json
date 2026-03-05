@@ -1,0 +1,19 @@
+{
+  "v": 1,
+  "scheme": "bsv-tx-v1",
+
+  "challenge_sha256": "9a7b6c5d4e3f221100ffeeddccbbaa99887766554433221100ffeeddccbbaa99",
+
+  "request": {
+    "method": "GET",
+    "path": "/v1/weather",
+    "query": "city=lisbon",
+    "req_headers_sha256": "5b2d5c2d9c7e1a2e3f0b4f6d7c8a9e0f1a2b3c4d5e6f7081920a1b2c3d4e5f60",
+    "req_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+
+  "payment": {
+    "txid": "6c0d9f8a7b6c5d4e3f221100ffeeddccbbaa99887766554433221100ffeeddcc",
+    "rawtx_b64": "AQAAAA..."
+  }
+}

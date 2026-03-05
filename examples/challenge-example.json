@@ -1,0 +1,28 @@
+{
+  "v": 1,
+  "scheme": "x402-bsv",
+
+  "domain": "api.example.com",
+
+  "method": "GET",
+  "path": "/v1/weather",
+  "query": "city=lisbon",
+
+  "req_headers_sha256": "5b2d5c2d9c7e1a2e3f0b4f6d7c8a9e0f1a2b3c4d5e6f7081920a1b2c3d4e5f60",
+  "req_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+
+  "amount_sats": 50,
+
+  "payee_locking_script_hex": "76a91489abcdefabbaabbaabbaabbaabbaabbaabba88ac",
+
+  "nonce_utxo": {
+    "txid": "4f8b42a7c1d7c0e0a3e3f7b8d4c5a6b7c8d9e0f112233445566778899aabbcc",
+    "vout": 0,
+    "satoshis": 1,
+    "locking_script_hex": "76a91400112233445566778899aabbccddeeff0011223388ac"
+  },
+
+  "expires_at": 1700000000,
+
+  "require_mempool_accept": true
+}
