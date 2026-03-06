@@ -1,8 +1,10 @@
 # x402 Protocol Specification
 
+This repository contains the canonical specification of the x402 protocol.
+
 x402 Stateless Settlement-Gated HTTP Protocol
 
-**Specification version:** v1.0-draft
+**Specification version:** v1.0
 
 Canonical specification of the x402 protocol.
 
@@ -36,9 +38,39 @@ The canonical protocol specification is located at:
 
 [spec/x402.md](spec/x402.md)
 
-## Status
+## Protocol Status
 
-Internet-Draft — Experimental
+Version: v1.0  
+Status: Stable
+
+The v1.0 specification is considered frozen.
+
+Implementations should target this version for interoperability.
+
+Future protocol changes will be introduced through versioned extensions or future major versions to preserve compatibility.
+
+## Conformance
+
+An implementation is considered x402 compatible if it:
+
+• implements the challenge-response flow defined in the specification  
+• validates settlement proofs according to the verification rules  
+• enforces replay protection requirements  
+• adheres to the HTTP semantics defined by the protocol
+
+Normative requirements use the terminology defined in RFC 2119.
+
+## Versioning
+
+x402 follows semantic versioning.
+
+Major versions introduce protocol-level breaking changes.
+
+Minor versions introduce backwards-compatible extensions.
+
+Patch versions clarify documentation without changing protocol behaviour.
+
+The v1 series will remain stable to preserve interoperability.
 
 ## Reference Implementation
 
