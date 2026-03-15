@@ -79,7 +79,7 @@ is currently under development.
 
 The reference gateway implementation will be published at:
 
-https://github.com/ruidasilva/merkleworks-x402-gateway
+https://github.com/merkleworks/x402-gateway
 
 ## License
 
