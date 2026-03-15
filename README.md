@@ -79,7 +79,9 @@ is currently under development.
 
 The reference gateway implementation will be published at:
 
-[https://github.com/merkleworks/x402-gateway](https://github.com/ruidasilva/x402-gateway)
+https://github.com/ruidasilva/x402-gateway
+
+https://github.com/merkleworks/x402-bsv
 
 ## License
 
